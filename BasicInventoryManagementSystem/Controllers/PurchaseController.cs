@@ -39,6 +39,26 @@ namespace BasicInventoryManagementSystem.Controllers
             return RedirectToAction("DisplayPurchase");
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Purchase p = db.Purchases.Where(x => x.id == id).SingleOrDefault();
+            List<string> list = db.Products.Select(x => x.Product_name).ToList();
+            ViewBag.ProductName = new SelectList(list);
+            return View(p);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id, Purchase pur)
+        {
+            Purchase p = db.Purchases.Where(x => x.id == id).SingleOrDefault();
+             
+            p.Purchase_data = pur.Purchase_data;
+            p.Purchase_prod = pur.Purchase_prod;
+            p.Purchase_qnty = pur.Purchase_qnty;
+            db.SaveChanges();
+            return RedirectToAction("DisplayPurchase");
+        }
 
 
     }

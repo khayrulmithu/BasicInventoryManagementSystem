@@ -37,7 +37,7 @@
             @Html.DisplayFor(modelItem => item.Purchase_data.Date.Day)/@Html.DisplayFor(modelItem => item.Purchase_data.Date.Month)/@Html.DisplayFor(modelItem => item.Purchase_data.Date.Year)
         </td>
         <td>
-            @Html.ActionLink("Edit", "", new { id=item.id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Edit", "Edit", "Purchase", new { id=item.id }, new { @class = "btn btn-primary" }) |
             @Html.ActionLink("Details", "Details", "Purchase", new { id=item.id }, new { @class = "btn btn-success" }) |
             @Html.ActionLink("Delete", "Delete", "Purchase", new { id=item.id }, new { @class = "btn btn-danger" })
         </td>

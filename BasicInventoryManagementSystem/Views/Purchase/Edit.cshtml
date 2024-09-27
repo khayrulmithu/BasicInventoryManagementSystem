@@ -1,10 +1,10 @@
 ﻿@model BasicInventoryManagementSystem.Models.Purchase
 
 @{
-    ViewBag.Title = "PurchaseProduct";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Purchase Product</h2>
+<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.Label("Purchase Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Purchase_data, new { htmlAttributes = new { @class = "form-control", type = "Date" } })
+                @Html.EditorFor(model => model.Purchase_data, new { htmlAttributes = new { @class = "form-control" }, type="date" })
                 @Html.ValidationMessageFor(model => model.Purchase_data, "", new { @class = "text-danger" })
             </div>
         </div>
