@@ -290,13 +290,15 @@
     <Content Include="Views\Product\ProductDetails.cshtml" />
     <Content Include="Views\Product\DeleteProduct.cshtml" />
     <Content Include="Views\Purchase\DisplayPurchase.cshtml" />
-    <Content Include="Views\Purchase\PurchaseProduct.cshtml" />
     <Content Include="Views\Purchase\Edit.cshtml" />
     <Content Include="Views\Sale\DisplaySale.cshtml" />
     <Content Include="Views\Sale\SaleProduct.cshtml" />
     <Content Include="Views\Sale\Details.cshtml" />
     <Content Include="Views\Sale\Delete.cshtml" />
     <Content Include="Views\Sale\Edit.cshtml" />
+    <Content Include="Views\Purchase\Details.cshtml" />
+    <Content Include="Views\Purchase\Delete.cshtml" />
+    <Content Include="Views\Purchase\PurchaseProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

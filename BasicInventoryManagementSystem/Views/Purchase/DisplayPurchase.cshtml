@@ -7,10 +7,13 @@
 <h2>Display Purchase</h2>
 
 <p>
-    @Html.ActionLink("Create New", "PurchaseProduct", "Purchase", new {@class="btn btn-primary"})
+    @Html.ActionLink("Create New", "PurchaseProduct", "Purchase", new { @class = "btn btn-primary" }) | 
+    <button class="btn btn-success" id="exportBtn">Export as PDF</button> |
+    <button class="btn btn-danger" id="printBtn">Print</button>
+
 </p>
-<table class="table" style="text-align:center">
-    <tr>
+<table id="myTable" class="table" style="text-align: center; border: 10px aquamarine solid; border-block-width: 15px">
+    <tr style="background-color: rgb(13 202 240 / 30%) !important">
         <th>
             @Html.DisplayName("Purchased Product")
         </th>
@@ -25,23 +28,66 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Purchase_prod)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Purchase_qnty)
-        </td> 
-        <td>
-            @Html.DisplayFor(modelItem => item.Purchase_data.Date.Day)/@Html.DisplayFor(modelItem => item.Purchase_data.Date.Month)/@Html.DisplayFor(modelItem => item.Purchase_data.Date.Year)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", "Purchase", new { id=item.id }, new { @class = "btn btn-primary" }) |
-            @Html.ActionLink("Details", "Details", "Purchase", new { id=item.id }, new { @class = "btn btn-success" }) |
-            @Html.ActionLink("Delete", "Delete", "Purchase", new { id=item.id }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr style=" border: 10px aquamarine solid;">
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchase_prod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchase_qnty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchase_data.Date.Day)/@Html.DisplayFor(modelItem => item.Purchase_data.Date.Month)/@Html.DisplayFor(modelItem => item.Purchase_data.Date.Year)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Purchase", new { id = item.id }, new { @class = "btn btn-primary" }) |
+                @Html.ActionLink("Details", "Details", "Purchase", new { id = item.id }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Delete", "Delete", "Purchase", new { id = item.id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+    // Select the button and add an event listener
+    document.getElementById("printBtn").addEventListener("click", function () {
+        // Trigger the browser's print dialog
+        window.print();
+    });
+</script>
+
+
+<script>
+    document.getElementById("exportBtn").addEventListener("click", function () {
+        // Capture the table element
+        let table = document.getElementById("myTable");
+
+        // Use html2canvas to capture table and convert it to an image
+        html2canvas(table).then((canvas) => {
+            let imgData = canvas.toDataURL('image/png'); // Convert canvas to an image
+
+            // Use jsPDF to create a PDF document
+            const { jsPDF } = window.jspdf;
+            let pdf = new jsPDF('1', 'pt', 'a4');
+
+            let pageWidth = pdf.internal.pageSize.getWidth();
+            let pageHeight = pdf.internal.pageSize.getHeight();
+
+            // Scale the image to fit within the page margins
+            let imgWidth = pageWidth - 40; // Adding margins
+            let imgHeight = (canvas.height * imgWidth) / canvas.width; // Maintain aspect ratio
+
+
+            // Add the image to the PDF
+            pdf.addImage(imgData, 'PNG', 20, 20, imgWidth, imgHeight);
+
+            // Save the PDF
+            pdf.save("Purchasetable.pdf");
+        });
+    });
+</script>

@@ -20,7 +20,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Purchase_prod" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Purchase_qnty" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Purchase_data" Type="date" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Purchase_data" Type="date" Nullable="false" StoreGeneratedPattern="None" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
@@ -67,7 +67,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Purchase_prod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Purchase_qnty" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Purchase_data" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Purchase_data" Type="DateTime" annotation:StoreGeneratedPattern="None" Nullable="false" />
         </EntityType>
         <EntityType Name="Sale">
           <Key>
