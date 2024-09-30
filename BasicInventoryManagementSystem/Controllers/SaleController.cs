@@ -19,6 +19,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult DisplaySale()
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             List<Sale> list = db.Sales.OrderByDescending(x => x.id).ToList();
             return View(list);
         }
@@ -26,6 +28,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult SaleProduct()
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             List<string> list = db.Products.Select(x => x.Product_name).ToList();
             ViewBag.ProductName = new SelectList(list);
             return View();
@@ -42,6 +46,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             Sale s = db.Sales.Where(x => x.id == id).SingleOrDefault();
             List<string> list = db.Products.Select(x => x.Product_name).ToList();
             ViewBag.ProductName = new SelectList(list);
@@ -63,6 +69,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             Sale s = db.Sales.Where(x=>x.id==id).SingleOrDefault(); 
             return View(s);
         }
@@ -70,6 +78,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             Sale s = db.Sales.Where(x => x.id == id).SingleOrDefault();
             return View(s);
         }

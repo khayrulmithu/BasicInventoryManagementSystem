@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+}
+
+<h2>SignIn</h2>
+<br />
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="text-align:center">
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <label>Email : </label>
+            </div>
+
+            <div class="col-md-4">
+                <input type="text" name="Email" value="" /> <br /> <br />
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-2">
+                <label>Password : </label>
+            </div>
+
+            <div class="col-md-4">
+                <input type="password" name="Password" value="" /> <br />
+            </div>
+
+        </div>
+        <br />
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <input class="btn btn-success" type="submit" name="signin" value="Signin" />
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

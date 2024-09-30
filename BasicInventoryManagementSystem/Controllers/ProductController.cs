@@ -10,15 +10,19 @@ namespace BasicInventoryManagementSystem.Controllers
     public class ProductController : Controller
     {
         InventoryEntities db = new InventoryEntities();
+
         // GET: Product
         public ActionResult Index()
         {
             return View();
+
         }
 
         [HttpGet]
         public ActionResult DisplayProduct()
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             List<Product> list = db.Products.OrderByDescending(x=>x.id).ToList();
             return View(list);
         }
@@ -26,6 +30,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult CreateProduct()
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             return View();
         }
 
@@ -45,6 +51,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult UpdateProduct(int id)
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             Product pr = db.Products.Where(x => x.id == id).SingleOrDefault();
             return View(pr);
         }
@@ -62,6 +70,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult ProductDetails(int id)
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             Product pr = db.Products.Where(x => x.id == id).SingleOrDefault();
             return View(pr);
 
@@ -82,6 +92,8 @@ namespace BasicInventoryManagementSystem.Controllers
         [HttpGet]
         public ActionResult DeleteProduct(int id)
         {
+            if (Session["user"] == null) return RedirectToAction("../Signin/Signin");
+
             Product pro = db.Products.Where(x => x.id == id).SingleOrDefault();
             return View(pro);
 
